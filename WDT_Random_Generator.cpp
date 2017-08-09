@@ -14,20 +14,20 @@ uint8_t getWdtRandom()
 {
 	uint8_t ret;
 	uint8_t timerValue;
-	_wdtStart();
+	_wdtStart();//enable wdt interrupt
 	uint8_t counter = DEFAULT_ITERATION;
 	while (counter)
 	{
 		if (_wdt_hasInterrupt == true)
 		{
 			_wdt_hasInterrupt = false;
-			timerValue = TCNT0;
-			ret = (ret << 1) | (ret >> 7);
-			ret ^= timerValue;
+			timerValue = TCNT0; //read timer 0 value
+			ret = (ret << 1) | (ret >> 7); //rotate the ret bits
+			ret ^= timerValue;	//XOR operation, preserves the randomness
 			counter--;
 		}
 	}
-	_wdtEnd();
+	_wdtEnd();//disable wdt interrupt
 	return ret;
 }
 
@@ -44,9 +44,7 @@ void _wdtStart()
 /*Sub-function used to disable watch dog timer interrupt mode*/
 void _wdtEnd()
 {
-	//cli(); //disable all interrupts
 	WDTCSR = 0; //disable WDT
-	//sei(); //enable all interrupts
 }
 
 /*ISR to handle WDT interrupt*/
