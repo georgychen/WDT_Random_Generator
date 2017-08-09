@@ -8,4 +8,5 @@ The default iteration setting is 24, and wdt interrupt period is 16ms, thus it t
 No hardware (analog) pins required, however, watch dog timer is reset after function call. User needs special care if WDT is used otherwise.
 
 Inspired by:
+
 -Arduino hardware true random number generator   https://gist.github.com/endolith/2568571
