@@ -1,5 +1,5 @@
 # WDT_Random_Generator
-A random nuber generator for arduino, especially targeted for program startup.
+A random number generator for arduino, especially targeted for program startup.
 
 This is an arduino library to create random numbers. It uses WDT (watch dog timer) and timer 0 to create a 8-bit number each time the getWdtRandom() function is called.
 
